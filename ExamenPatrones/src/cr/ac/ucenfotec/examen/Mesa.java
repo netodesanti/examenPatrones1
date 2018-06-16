@@ -26,4 +26,12 @@ public class Mesa {
 		
 		jugadores.add(player);
 	}
+	
+	public void empezarAJugar21() {
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < jugadores.size(); j++) {
+				jugadores.get(j).agregarCartaAMano(miRepartidor.darCarta());
+			}
+		}
+	}
 }

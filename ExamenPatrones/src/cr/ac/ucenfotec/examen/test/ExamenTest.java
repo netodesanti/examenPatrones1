@@ -25,12 +25,12 @@ public class ExamenTest {
 		card2 = new Carta("Dos", "Estrellas", 2);
 		card3 = new Carta("As", "Escudos", 1);
 		card4 = new Carta("Jota", "Gotas", 10);
-		
+
 		player = new Jugador();
 		player.setNombre("Bryce Carlson");
 		player.agregarCartaAMano(card);
 		player.agregarCartaAMano(card2);
-		
+
 		deck = new Naipe();
 		dealer = new Repartidor();
 		miMesa = new Mesa();
@@ -79,35 +79,52 @@ public class ExamenTest {
 		assertEquals("Carta [nombre=Uno, palo=Flores, valor=1]", player.getMano().get(0).toString());
 		assertEquals("Carta [nombre=Dos, palo=Estrellas, valor=2]", player.getMano().get(1).toString());
 	}
-	
+
 	@Test
 	public void testMesaSinJugadores() {
 		assertEquals(0, miMesa.getJugadores().size());
 	}
-	
+
 	@Test
 	public void testAgregarJugador() {
 		miMesa.agregarJugador(player);
 		assertEquals("Bryce Carlson", miMesa.getJugadores().get(0).getNombre());
 	}
-	
+
 	@Test(expected = RuntimeException.class)
 	public void testAgregarJugadorAMesaLlena() {
 		for (int i = 0; i < 5; i++) {
 			miMesa.agregarJugador(player);
 		}
 	}
-	
+
 	@Test
 	public void testDarCarta() {
 		player = new Jugador();
-		
+
 		assertEquals(52, dealer.getListNaipe().size());
 		assertEquals(0, player.getMano().size());
-		
+
 		player.agregarCartaAMano(dealer.darCarta());
-		
+
 		assertEquals(51, dealer.getListNaipe().size());
 		assertEquals(1, player.getMano().size());
 	}
+
+	@Test
+	public void testEmpezarAJugar() {
+		player = new Jugador();
+		Jugador player2 = new Jugador();
+
+		miMesa.agregarJugador(player);
+		miMesa.agregarJugador(player2);
+		assertEquals(0, player.getMano().size());
+		assertEquals(0, player2.getMano().size());
+
+		miMesa.empezarAJugar21();
+
+		assertEquals(2, player.getMano().size());
+		assertEquals(2, player2.getMano().size());
+	}
+
 }
