@@ -15,7 +15,7 @@ public class ExamenTest {
 
 	private Carta card, card2, card3, card4;
 	private Naipe deck;
-	private Repartidor cartasJuego;
+	private Repartidor dealer;
 	private Jugador player;
 	private Mesa miMesa;
 
@@ -32,7 +32,7 @@ public class ExamenTest {
 		player.agregarCartaAMano(card2);
 		
 		deck = new Naipe();
-		cartasJuego = new Repartidor();
+		dealer = new Repartidor();
 		miMesa = new Mesa();
 	}
 
@@ -66,10 +66,10 @@ public class ExamenTest {
 
 	@Test
 	public void testDeckCartasRepartidor() {
-		assertEquals(52, cartasJuego.getNaipe().length);
+		assertEquals(52, dealer.getNaipe().length);
 
-		assertNotEquals("Carta [nombre=As, palo=Escudos, valor=1]", cartasJuego.getNaipe()[0]);
-		assertNotEquals("Carta [nombre=Ka, palo=Gotas, valor=10]", cartasJuego.getNaipe()[51]);
+		assertNotEquals("Carta [nombre=As, palo=Escudos, valor=1]", dealer.getNaipe()[0]);
+		assertNotEquals("Carta [nombre=Ka, palo=Gotas, valor=10]", dealer.getNaipe()[51]);
 	}
 
 	@Test
@@ -96,5 +96,18 @@ public class ExamenTest {
 		for (int i = 0; i < 5; i++) {
 			miMesa.agregarJugador(player);
 		}
+	}
+	
+	@Test
+	public void testDarCarta() {
+		player = new Jugador();
+		
+		assertEquals(52, dealer.getListNaipe().size());
+		assertEquals(0, player.getMano().size());
+		
+		player.agregarCartaAMano(dealer.darCarta());
+		
+		assertEquals(51, dealer.getListNaipe().size());
+		assertEquals(1, player.getMano().size());
 	}
 }
