@@ -16,7 +16,7 @@ public class ExamenTest {
 	private Carta card, card2, card3, card4;
 	private Naipe deck;
 	private Repartidor dealer;
-	private Jugador player;
+	private Jugador player, player2, player3;
 	private Mesa miMesa;
 
 	@Before
@@ -87,7 +87,7 @@ public class ExamenTest {
 
 	@Test
 	public void testAgregarJugador() {
-		miMesa.agregarJugador(player);
+		agregarJugadores();
 		assertEquals("Bryce Carlson", miMesa.getJugadores().get(0).getNombre());
 	}
 
@@ -113,11 +113,8 @@ public class ExamenTest {
 
 	@Test
 	public void testEmpezarAJugar() {
-		player = new Jugador();
-		Jugador player2 = new Jugador();
-
-		miMesa.agregarJugador(player);
-		miMesa.agregarJugador(player2);
+		agregarJugadores();
+		
 		assertEquals(0, player.getMano().size());
 		assertEquals(0, player2.getMano().size());
 
@@ -127,4 +124,31 @@ public class ExamenTest {
 		assertEquals(2, player2.getMano().size());
 	}
 
+	@Test
+	public void testGanador() {
+		agregarJugadores();
+		player.agregarCartaAMano(card2);
+		player.agregarCartaAMano(card3);
+		
+		player2.agregarCartaAMano(card2);
+		player2.agregarCartaAMano(card4);
+		
+		player3.agregarCartaAMano(card);
+		player3.agregarCartaAMano(card3);
+		
+		assertEquals("Ken Uston", miMesa.ganador(miMesa.getJugadores()));
+	}
+	
+	public void agregarJugadores() {
+		player = new Jugador();
+		player.setNombre("Bryce Carlson");
+		player2 = new Jugador();
+		player2.setNombre("Ken Uston");
+		player3 = new Jugador();
+		player3.setNombre("Tommy Hyland");
+
+		miMesa.agregarJugador(player);
+		miMesa.agregarJugador(player2);
+		miMesa.agregarJugador(player3);
+	}
 }
