@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import cr.ac.ucenfotec.examen.Carta;
 import cr.ac.ucenfotec.examen.Jugador;
+import cr.ac.ucenfotec.examen.Mesa;
 import cr.ac.ucenfotec.examen.Naipe;
 import cr.ac.ucenfotec.examen.Repartidor;
 
@@ -16,6 +17,7 @@ public class ExamenTest {
 	private Naipe deck;
 	private Repartidor cartasJuego;
 	private Jugador player;
+	private Mesa miMesa;
 
 	@Before
 	public void setUp() {
@@ -27,6 +29,7 @@ public class ExamenTest {
 		deck = new Naipe();
 		cartasJuego = new Repartidor();
 		player = new Jugador();
+		miMesa = new Mesa();
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -75,5 +78,10 @@ public class ExamenTest {
 				player.getMano().toString());
 		assertEquals("Carta [nombre=Uno, palo=Flores, valor=1]", player.getMano().get(0).toString());
 		assertEquals("Carta [nombre=Dos, palo=Estrellas, valor=2]", player.getMano().get(1).toString());
+	}
+	
+	@Test
+	public void testMesaSinJugadores() {
+		assertEquals(0, miMesa.getJugadores().size());
 	}
 }
