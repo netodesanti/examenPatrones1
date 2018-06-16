@@ -26,9 +26,13 @@ public class ExamenTest {
 		card3 = new Carta("As", "Escudos", 1);
 		card4 = new Carta("Jota", "Gotas", 10);
 		
+		player = new Jugador();
+		player.setNombre("Bryce Carlson");
+		player.agregarCartaAMano(card);
+		player.agregarCartaAMano(card2);
+		
 		deck = new Naipe();
 		cartasJuego = new Repartidor();
-		player = new Jugador();
 		miMesa = new Mesa();
 	}
 
@@ -70,10 +74,6 @@ public class ExamenTest {
 
 	@Test
 	public void testClaseJugador() {
-		player.setNombre("Bryce Carlson");
-		player.agregarCartaAMano(card);
-		player.agregarCartaAMano(card2);
-
 		assertEquals("[Carta [nombre=Uno, palo=Flores, valor=1], Carta [nombre=Dos, palo=Estrellas, valor=2]]",
 				player.getMano().toString());
 		assertEquals("Carta [nombre=Uno, palo=Flores, valor=1]", player.getMano().get(0).toString());
@@ -83,5 +83,18 @@ public class ExamenTest {
 	@Test
 	public void testMesaSinJugadores() {
 		assertEquals(0, miMesa.getJugadores().size());
+	}
+	
+	@Test
+	public void testAgregarJugador() {
+		miMesa.agregarJugador(player);
+		assertEquals("Bryce Carlson", miMesa.getJugadores().get(0).getNombre());
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void testAgregarJugadorAMesaLlena() {
+		for (int i = 0; i < 5; i++) {
+			miMesa.agregarJugador(player);
+		}
 	}
 }

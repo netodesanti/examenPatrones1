@@ -21,5 +21,10 @@ public class Jugador {
 	public void agregarCartaAMano(Carta card) {
 		this.mano.add(card);
 	}
+
+	@Override
+	public String toString() {
+		return "Jugador [nombre=" + nombre + ", mano=" + mano + "]";
+	}
 	
 }

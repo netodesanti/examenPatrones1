@@ -19,4 +19,11 @@ public class Mesa {
 		return miRepartidor;
 	}
 	
+	public void agregarJugador(Jugador player) {
+		if (jugadores.size() == 4) {
+			throw new RuntimeException("La mesa está llena.");
+		}
+		
+		jugadores.add(player);
+	}
 }
