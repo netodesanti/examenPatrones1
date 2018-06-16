@@ -40,6 +40,11 @@ public class Carta {
 		this.valor = valor;
 	}
 
+	@Override
+	public String toString() {
+		return "Carta [nombre=" + nombre + ", palo=" + palo + ", valor=" + valor + "]";
+	}
+
 	public boolean chkValor(Carta card) {
 		if (card.getValor() >= 1 && card.getValor() <= 10) {
 			return true;

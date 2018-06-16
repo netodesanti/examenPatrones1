@@ -5,10 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import cr.ac.ucenfotec.examen.Carta;
+import cr.ac.ucenfotec.examen.Naipe;
 
-public class CartaTest {
+public class ExamenTest {
 
 	private Carta card, card2, card3, card4;
+	private Naipe deck = new Naipe();
 	
 	@Test(expected = RuntimeException.class)
 	public void testValorEntre1y10() {
@@ -31,5 +33,18 @@ public class CartaTest {
 		
 		assertTrue(card.equals(card, card3));
 		assertFalse(card.equals(card, card2));
+	}
+	
+	@Test
+	public void testDeckCartas() {
+		deck.llenarDeck();
+		
+		assertEquals(52, deck.getMiNaipe().length);
+		
+		assertEquals("Escudos", deck.getMiNaipe()[0].getPalo());
+		assertEquals("Flores", deck.getMiNaipe()[1].getPalo());
+		assertEquals("Estrellas", deck.getMiNaipe()[2].getPalo());
+		assertEquals("Gotas", deck.getMiNaipe()[3].getPalo());
+		assertEquals("Escudos", deck.getMiNaipe()[4].getPalo());
 	}
 }
