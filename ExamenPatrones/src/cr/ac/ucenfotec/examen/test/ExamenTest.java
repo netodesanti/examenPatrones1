@@ -6,11 +6,13 @@ import org.junit.Test;
 
 import cr.ac.ucenfotec.examen.Carta;
 import cr.ac.ucenfotec.examen.Naipe;
+import cr.ac.ucenfotec.examen.Repartidor;
 
 public class ExamenTest {
 
 	private Carta card, card2, card3, card4;
 	private Naipe deck = new Naipe();
+	private Repartidor cartasJuego = new Repartidor();
 	
 	@Test(expected = RuntimeException.class)
 	public void testValorEntre1y10() {
@@ -37,8 +39,6 @@ public class ExamenTest {
 	
 	@Test
 	public void testDeckCartas() {
-		deck.llenarDeck();
-		
 		assertEquals(52, deck.getMiNaipe().length);
 		
 		assertEquals("Escudos", deck.getMiNaipe()[0].getPalo());
@@ -46,5 +46,13 @@ public class ExamenTest {
 		assertEquals("Estrellas", deck.getMiNaipe()[2].getPalo());
 		assertEquals("Gotas", deck.getMiNaipe()[3].getPalo());
 		assertEquals("Escudos", deck.getMiNaipe()[4].getPalo());
+	}
+	
+	@Test
+	public void testDeckCartasRepartidor() {
+		assertEquals(52, cartasJuego.getNaipe().length);
+		
+		assertNotEquals("Carta [nombre=As, palo=Escudos, valor=1]", cartasJuego.getNaipe()[0]);
+		assertNotEquals("Carta [nombre=Ka, palo=Gotas, valor=10]", cartasJuego.getNaipe()[51]);
 	}
 }
