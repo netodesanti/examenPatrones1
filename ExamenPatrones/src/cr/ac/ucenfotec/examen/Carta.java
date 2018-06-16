@@ -47,5 +47,13 @@ public class Carta {
 			throw new RuntimeException("El valor se sale del rango.");
 		}
 	}
+	
+	public boolean equals(Carta card, Carta card2) {
+		if (card.getValor() == card2.getValor()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

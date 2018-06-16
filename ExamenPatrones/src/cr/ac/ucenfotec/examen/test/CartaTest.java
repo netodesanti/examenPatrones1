@@ -23,4 +23,13 @@ public class CartaTest {
 		assertFalse(card.chkValor(card4));
 	}
 	
+	@Test
+	public void testCartasIguales() {
+		card = new Carta("Uno", "Flores", 1);
+		card2 = new Carta("Dos", "Estrellas", 2);
+		card3 = new Carta("As", "Escudos", 1);
+		
+		assertTrue(card.equals(card, card3));
+		assertFalse(card.equals(card, card2));
+	}
 }
