@@ -20,6 +20,10 @@ public class Mesa {
 	public Repartidor getMiRepartidor() {
 		return miRepartidor;
 	}
+	
+	public ArrayList<Carta> getDeck(){
+		return deck;
+	}
 
 	public void agregarJugador(Jugador player) {
 		if (jugadores.size() == 4) {
@@ -155,6 +159,11 @@ public class Mesa {
 			jugador.getMano().remove(index);
 			jugador.agregarCartaAMano(card);
 		}
+	}
+	
+	public void reset() {
+		jugadores = new ArrayList<>();
+		miRepartidor = new Repartidor();
 	}
 
 	private Jugador compararDos(Jugador jugador, Jugador jugador2) {

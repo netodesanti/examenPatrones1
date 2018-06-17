@@ -217,6 +217,22 @@ public class ExamenTest {
 		assertEquals(7, miMesa.getJugadores().get(0).getMano().size());
 	}
 	
+	@Test
+	public void testReset() {
+		agregarJugadores();
+		
+		miMesa.getMiRepartidor().darCarta();
+		miMesa.getMiRepartidor().darCarta();
+
+		assertEquals(3, miMesa.getJugadores().size());
+		assertEquals(50, miMesa.getMiRepartidor().getListNaipe().size());
+		
+		miMesa.reset();
+		
+		assertEquals(0, miMesa.getJugadores().size());
+		assertEquals(52, miMesa.getMiRepartidor().getListNaipe().size());
+	}
+	
 	public void agregarJugadores() {
 		player = new Jugador();
 		player.setNombre("Bryce Carlson");
