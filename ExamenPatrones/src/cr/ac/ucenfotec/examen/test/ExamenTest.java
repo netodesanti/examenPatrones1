@@ -139,6 +139,28 @@ public class ExamenTest {
 		assertEquals("Ken Uston", miMesa.ganador(miMesa.getJugadores()));
 	}
 	
+	@Test
+	public void verificarCambio() {
+		player = new Jugador();
+		player2 = new Jugador();
+		
+		card = new Carta("Jota", "Flores", 10);
+		card2 = new Carta("Tres", "Estrellas", 3);
+		card3 = new Carta("Cinco", "Flores", 5);
+		
+		player.agregarCartaAMano(card);
+		player.agregarCartaAMano(card2);
+		
+		player2.agregarCartaAMano(card);
+		player2.agregarCartaAMano(card3);
+		
+		miMesa.agregarJugador(player);
+		miMesa.agregarJugador(player2);
+				
+		assertTrue(miMesa.verificarCambio(miMesa.getJugadores().get(0).getMano()));
+		assertFalse(miMesa.verificarCambio(miMesa.getJugadores().get(1).getMano()));
+	}
+	
 	public void agregarJugadores() {
 		player = new Jugador();
 		player.setNombre("Bryce Carlson");

@@ -84,7 +84,26 @@ public class Mesa {
 		}
 
 		return ganador;
+	}
 
+	public boolean verificarCambio(ArrayList<Carta> mano) {
+		boolean valor = false;
+
+		if (mano.get(0).getNombre().equals("Jota") || mano.get(0).getNombre().equals("Qüina")
+				|| mano.get(0).getNombre().equals("Ka")) {
+			if (mano.get(1).getValor() == 3) {
+				valor = true;
+			}
+		} else if (mano.get(0).getValor() == 3) {
+			if (mano.get(0).getNombre().equals("Jota") || mano.get(0).getNombre().equals("Qüina")
+				|| mano.get(0).getNombre().equals("Ka")) {
+				valor = true;
+			}
+		} else {
+			valor = false;
+		}
+		
+		return valor;
 	}
 
 	private Jugador compararDos(Jugador jugador, Jugador jugador2) {
