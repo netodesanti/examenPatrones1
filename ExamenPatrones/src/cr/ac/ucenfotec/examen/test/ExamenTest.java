@@ -209,12 +209,12 @@ public class ExamenTest {
 	public void testTomarCartaDeck() {
 		player = new Jugador();	
 		miMesa.agregarJugador(player);
-		player.agregarCartaAMano(miMesa.tomarCarta());
 		
-		assertEquals(1, player.getMano().size());
+		miMesa.empezarPartidaDeRon();
 		
-		player.agregarCartaAMano(miMesa.tomarCarta());
-		assertEquals(2, player.getMano().size());
+		miMesa.tomarCarta(miMesa.getJugadores().get(0));
+		
+		assertEquals(7, miMesa.getJugadores().get(0).getMano().size());
 	}
 	
 	public void agregarJugadores() {

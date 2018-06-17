@@ -76,7 +76,7 @@ public class Mesa {
 						}
 					}
 				}
-			} else if(compararDos(jugador.get(2), jugador.get(3)) == null) {
+			} else if (compararDos(jugador.get(2), jugador.get(3)) == null) {
 				return "Empataron " + jugador.get(2) + " y " + jugador.get(3);
 			} else if (compararDos(jugador.get(0), jugador.get(1)) != null) {
 				Jugador ganeTemp = compararDos(jugador.get(0), jugador.get(1));
@@ -84,7 +84,7 @@ public class Mesa {
 				ganador = compararDos(ganeTemp, ganeTemp2).getNombre();
 			}
 		}
-		
+
 		return ganador;
 	}
 
@@ -125,7 +125,7 @@ public class Mesa {
 
 		return valor;
 	}
-	
+
 	public boolean ganadorComodin(Jugador jugador) {
 		if (jugador.getMano().get(0).getNombre().equals("Siete") && jugador.getMano().get(0).getPalo().equals("Gotas")
 				|| jugador.getMano().get(1).getNombre().equals("Siete")
@@ -135,7 +135,7 @@ public class Mesa {
 			return false;
 		}
 	}
-	
+
 	public void empezarPartidaDeRon() {
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < jugadores.size(); j++) {
@@ -143,17 +143,17 @@ public class Mesa {
 			}
 		}
 	}
-	
-	public Carta tomarCarta() {
+
+	public void tomarCarta(Jugador jugador) {
 		int carta = 0;
-		
+
 		if (carta < deck.size()) {
 			Carta card = deck.get(carta++);
 			deck.remove(carta - 1);
-			
-			return card;
-		} else {
-			return null;
+
+			int index = getRandomInteger(7, 1);
+			jugador.getMano().remove(index);
+			jugador.agregarCartaAMano(card);
 		}
 	}
 
@@ -175,5 +175,9 @@ public class Mesa {
 		}
 
 		return ganador;
+	}
+
+	private int getRandomInteger(int maximum, int minimum) {
+		return ((int) (Math.random() * (maximum - minimum))) + minimum;
 	}
 }
