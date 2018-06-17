@@ -43,10 +43,6 @@ public class Mesa {
 		}
 
 		if (jugador.size() == 2) {
-			if (compararDos(jugador.get(0), jugador.get(1)) == null) {
-				ganador = "Empataron " + jugador.get(0).getNombre() + " y " + jugador.get(1).getNombre();
-			}
-
 			ganador = compararDos(jugador.get(0), jugador.get(1)).getNombre();
 		}
 
@@ -65,24 +61,28 @@ public class Mesa {
 			}
 		}
 
-		if (jugador.size() == 4)
-
-		{
+		if (jugador.size() == 4) {
 			if (compararDos(jugador.get(0), jugador.get(1)) == null) {
-				if (compararDos(jugador.get(0), jugador.get(2)).equals(null)) {
-					if (compararDos(jugador.get(2), jugador.get(3)).equals(null)) {
+				if (compararDos(jugador.get(0), jugador.get(2)) == null) {
+					if (compararDos(jugador.get(2), jugador.get(3)) == null) {
 						ganador = "Empataron todos los jugadores";
+					} else if (compararDos(jugador.get(0), jugador.get(1)) == null) {
+						if (compararDos(jugador.get(0), jugador.get(2)) == null) {
+							return "Empataron los tres jugadores";
+						} else {
+							return "Empataron " + jugador.get(0).getNombre() + " y " + jugador.get(1).getNombre();
+						}
 					}
 				}
-
-				ganador = compararDos(jugador.get(0), jugador.get(2)).getNombre();
+			} else if(compararDos(jugador.get(2), jugador.get(3)) == null) {
+				return "Empataron " + jugador.get(2) + " y " + jugador.get(3);
+			} else if (compararDos(jugador.get(0), jugador.get(1)) != null) {
+				Jugador ganeTemp = compararDos(jugador.get(0), jugador.get(1));
+				Jugador ganeTemp2 = compararDos(jugador.get(2), jugador.get(3));
+				ganador = compararDos(ganeTemp, ganeTemp2).getNombre();
 			}
-
-			Jugador ganeTemp = compararDos(jugador.get(0), jugador.get(1));
-			Jugador ganeTemp2 = compararDos(jugador.get(2), jugador.get(3));
-			ganador = compararDos(ganeTemp, ganeTemp2).getNombre();
 		}
-
+		
 		return ganador;
 	}
 
@@ -96,7 +96,25 @@ public class Mesa {
 			}
 		} else if (mano.get(0).getValor() == 3) {
 			if (mano.get(0).getNombre().equals("Jota") || mano.get(0).getNombre().equals("Qüina")
-				|| mano.get(0).getNombre().equals("Ka")) {
+					|| mano.get(0).getNombre().equals("Ka")) {
+				valor = true;
+			}
+		} else {
+			valor = false;
+		}
+
+		return valor;
+	}
+	
+	public boolean ganadorMedio(Jugador jugador) {
+		boolean valor = false;
+		
+		if (jugador.getMano().get(0).getValor() == 10) {
+			if (jugador.getMano().get(1).getValor() == 2) {
+				valor = true;
+			}
+		} else if(jugador.getMano().get(0).getValor() == 2) {
+			if (jugador.getMano().get(1).getValor() == 10) {
 				valor = true;
 			}
 		} else {

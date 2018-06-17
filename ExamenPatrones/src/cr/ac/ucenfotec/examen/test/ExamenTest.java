@@ -22,7 +22,7 @@ public class ExamenTest {
 	@Before
 	public void setUp() {
 		card = new Carta("Uno", "Flores", 1);
-		card2 = new Carta("Dos", "Estrellas", 2);
+		card2 = new Carta("Tres", "Estrellas", 3);
 		card3 = new Carta("As", "Escudos", 1);
 		card4 = new Carta("Jota", "Gotas", 10);
 
@@ -74,10 +74,10 @@ public class ExamenTest {
 
 	@Test
 	public void testClaseJugador() {
-		assertEquals("[Carta [nombre=Uno, palo=Flores, valor=1], Carta [nombre=Dos, palo=Estrellas, valor=2]]",
+		assertEquals("[Carta [nombre=Uno, palo=Flores, valor=1], Carta [nombre=Tres, palo=Estrellas, valor=3]]",
 				player.getMano().toString());
 		assertEquals("Carta [nombre=Uno, palo=Flores, valor=1]", player.getMano().get(0).toString());
-		assertEquals("Carta [nombre=Dos, palo=Estrellas, valor=2]", player.getMano().get(1).toString());
+		assertEquals("Carta [nombre=Tres, palo=Estrellas, valor=3]", player.getMano().get(1).toString());
 	}
 
 	@Test
@@ -159,6 +159,25 @@ public class ExamenTest {
 				
 		assertTrue(miMesa.verificarCambio(miMesa.getJugadores().get(0).getMano()));
 		assertFalse(miMesa.verificarCambio(miMesa.getJugadores().get(1).getMano()));
+	}
+	
+	@Test
+	public void testGanadorMedio() {
+		agregarJugadores();
+		card3 = new Carta("Cinco", "Flores", 5);
+		card = new Carta("Dos", "Flores", 2);
+		
+		player.agregarCartaAMano(card3);
+		player.agregarCartaAMano(card4);
+		
+		player2.agregarCartaAMano(card2);
+		player2.agregarCartaAMano(card4);
+		
+		player3.agregarCartaAMano(card);
+		player3.agregarCartaAMano(card4);
+		
+		assertTrue(miMesa.ganadorMedio(miMesa.getJugadores().get(2)));
+		assertFalse(miMesa.ganadorMedio(miMesa.getJugadores().get(1)));
 	}
 	
 	public void agregarJugadores() {
