@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Mesa {
 	Repartidor miRepartidor;
 	ArrayList<Jugador> jugadores;
+	ArrayList<Carta> deck;
 
 	public Mesa() {
 		miRepartidor = new Repartidor();
 		jugadores = new ArrayList<>();
+		deck = new ArrayList<>(miRepartidor.getListNaipe());
 	}
 
 	public ArrayList<Jugador> getJugadores() {
@@ -139,6 +141,19 @@ public class Mesa {
 			for (int j = 0; j < jugadores.size(); j++) {
 				jugadores.get(j).agregarCartaAMano(miRepartidor.darCarta());
 			}
+		}
+	}
+	
+	public Carta tomarCarta() {
+		int carta = 0;
+		
+		if (carta < deck.size()) {
+			Carta card = deck.get(carta++);
+			deck.remove(carta - 1);
+			
+			return card;
+		} else {
+			return null;
 		}
 	}
 

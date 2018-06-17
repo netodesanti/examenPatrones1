@@ -205,6 +205,18 @@ public class ExamenTest {
 		assertEquals(7, miMesa.getJugadores().get(2).getMano().size());
 	}
 	
+	@Test
+	public void testTomarCartaDeck() {
+		player = new Jugador();	
+		miMesa.agregarJugador(player);
+		player.agregarCartaAMano(miMesa.tomarCarta());
+		
+		assertEquals(1, player.getMano().size());
+		
+		player.agregarCartaAMano(miMesa.tomarCarta());
+		assertEquals(2, player.getMano().size());
+	}
+	
 	public void agregarJugadores() {
 		player = new Jugador();
 		player.setNombre("Bryce Carlson");
