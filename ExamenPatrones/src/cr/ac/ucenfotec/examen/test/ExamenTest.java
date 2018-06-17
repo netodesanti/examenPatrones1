@@ -180,6 +180,21 @@ public class ExamenTest {
 		assertFalse(miMesa.ganadorMedio(miMesa.getJugadores().get(1)));
 	}
 	
+	@Test
+	public void testComodin() {
+		//Comodín es 7 de Gotas
+		agregarJugadores();
+		card = new Carta("Siete", "Gotas", 7);
+		
+		player.agregarCartaAMano(card);
+		player.agregarCartaAMano(card3);
+		player2.agregarCartaAMano(card2);
+		player2.agregarCartaAMano(card4);
+		
+		assertTrue(miMesa.ganadorComodin(miMesa.getJugadores().get(0)));
+		assertFalse(miMesa.ganadorComodin(miMesa.getJugadores().get(1)));
+	}
+	
 	public void agregarJugadores() {
 		player = new Jugador();
 		player.setNombre("Bryce Carlson");

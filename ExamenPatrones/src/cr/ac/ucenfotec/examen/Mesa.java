@@ -105,23 +105,33 @@ public class Mesa {
 
 		return valor;
 	}
-	
+
 	public boolean ganadorMedio(Jugador jugador) {
 		boolean valor = false;
-		
+
 		if (jugador.getMano().get(0).getValor() == 10) {
 			if (jugador.getMano().get(1).getValor() == 2) {
 				valor = true;
 			}
-		} else if(jugador.getMano().get(0).getValor() == 2) {
+		} else if (jugador.getMano().get(0).getValor() == 2) {
 			if (jugador.getMano().get(1).getValor() == 10) {
 				valor = true;
 			}
 		} else {
 			valor = false;
 		}
-		
+
 		return valor;
+	}
+	
+	public boolean ganadorComodin(Jugador jugador) {
+		if (jugador.getMano().get(0).getNombre().equals("Siete") && jugador.getMano().get(0).getPalo().equals("Gotas")
+				|| jugador.getMano().get(1).getNombre().equals("Siete")
+						&& jugador.getMano().get(1).getPalo().equals("Gotas")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private Jugador compararDos(Jugador jugador, Jugador jugador2) {
