@@ -195,6 +195,16 @@ public class ExamenTest {
 		assertFalse(miMesa.ganadorComodin(miMesa.getJugadores().get(1)));
 	}
 	
+	@Test
+	public void testEmpezarPartidaRon() {
+		agregarJugadores();
+		miMesa.empezarPartidaDeRon();
+		
+		assertEquals(7, miMesa.getJugadores().get(0).getMano().size());
+		assertEquals(7, miMesa.getJugadores().get(1).getMano().size());
+		assertEquals(7, miMesa.getJugadores().get(2).getMano().size());
+	}
+	
 	public void agregarJugadores() {
 		player = new Jugador();
 		player.setNombre("Bryce Carlson");

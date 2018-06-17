@@ -133,6 +133,14 @@ public class Mesa {
 			return false;
 		}
 	}
+	
+	public void empezarPartidaDeRon() {
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < jugadores.size(); j++) {
+				jugadores.get(j).agregarCartaAMano(miRepartidor.darCarta());
+			}
+		}
+	}
 
 	private Jugador compararDos(Jugador jugador, Jugador jugador2) {
 		int dif, dif2;
